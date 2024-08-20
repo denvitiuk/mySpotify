@@ -1,16 +1,31 @@
-# This is a sample Python script.
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+    client_id="token",
+    client_secret="token",
+    redirect_uri="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    scope="user-library-read user-top-read"
+))
 
+# Проверка токена
+token_info = sp.auth_manager.get_cached_token()
+if not token_info:
+    print("Didn't get token.")
+else:
+    print("Token is obtained successfully.")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# Получение топ-треков пользователя
+try:
+    top_tracks = sp.current_user_top_tracks(limit=5)
+    top_track_ids = [track['id'] for track in top_tracks['items']]
 
+    # Получение рекомендаций
+    recommendations = sp.recommendations(seed_tracks=top_track_ids, limit=5)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    # Вывод рекомендованных треков
+    for track in recommendations['tracks']:
+        print(f"Recommended track: {track['name']} - {track['artists'][0]['name']}")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+except spotipy.exceptions.SpotifyException as e:
+    print(f"Error: {e}")
