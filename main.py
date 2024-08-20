@@ -8,22 +8,22 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope="user-library-read user-top-read"
 ))
 
-# Проверка токена
+# Check is token valid/working properly
 token_info = sp.auth_manager.get_cached_token()
 if not token_info:
     print("Didn't get token.")
 else:
     print("Token is obtained successfully.")
 
-# Получение топ-треков пользователя
+#  Getting top tracks
 try:
     top_tracks = sp.current_user_top_tracks(limit=5)
     top_track_ids = [track['id'] for track in top_tracks['items']]
 
-    # Получение рекомендаций
+    # Getting recommendation
     recommendations = sp.recommendations(seed_tracks=top_track_ids, limit=5)
 
-    # Вывод рекомендованных треков
+    # Output recommendation
     for track in recommendations['tracks']:
         print(f"Recommended track: {track['name']} - {track['artists'][0]['name']}")
 
