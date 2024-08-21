@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-# Настройка Spotify OAuth
+# Spotify OAuth
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id="token",
     client_secret="token",
@@ -9,7 +9,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope="user-modify-playback-state user-read-playback-state"
 ))
 
-# Убедитесь, что у вас есть активное устройство для воспроизведения
+
 devices = sp.devices()
 if devices['devices']:
 
