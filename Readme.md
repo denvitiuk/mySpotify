@@ -1,2 +1,2 @@
-In this project I implemented a list of recommended songs, displaying them in separate playlists.Also I implemented a list of my most popular tracks.
-P.S. Sometimes you want to check how many minutes,you listen some songs pr singers and don’t want download some apps with adds or fake info.So,my script should help you with that.Enjoy it!
+In this project I implemented a list of recommended songs, displaying them in separate playlists.Also, I implemented a list of my most popular tracks.
+P.S. Sometimes you want to check how many minutes,you listen some songs or singers and don’t want download some apps with adds or fake info.So,my script should help you with that.Enjoy it!
